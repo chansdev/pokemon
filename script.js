@@ -4,37 +4,41 @@ gengar = {
   "Hp" : 261,
   "Atk" : 166,
   "Def" : 157,
-  "SpA" : 359,
-  "SpD" : 167,
+  "Spa" : 359,
+  "Spd" : 167,
   "Spe" : 350,
-  "Moves": ["Shadow Ball", "Energy Ball", "Hidden Power Ice", "Taunt"]
+  "4xWeakness" : [],
+  "4xResistances" : ["Bug", "Poison"],
+  "Weakness": ["Dark", "Ghost", "Psychic"],
+  "Resistances": ["Fairy", "Grass"],
+  "Immunities": ["Ground"],
 }
+  let gengarMoves = ["ShadowBall", "EnergyBall", "HiddenPowerIce", "Taunt"]
+
 dragonite = {
   "Hp" : 323,
   "Atk" : 403,
   "Def" : 227,
-  "SpA" : 212,
-  "SpD" : 236,
+  "Spa" : 212,
+  "Spd" : 236,
   "Spe" : 259,
   "4xWeakness" : ["Ice"],
   "4xResistances" : ["Grass"],
   "Weakness": ["Dragon", "Fairy", "Rock"],
-  "Resistances": ["Bug", "Fighting", "Fire", "Water"], 
-  "dragoniteMoves": ["DragonDance", "Extreme Speed", "FirePunch", "Earthquake"]
+  "Resistances": ["Bug", "Fighting", "Fire", "Water"],
+  "Immunities": ["Ground"],
+  "dragoniteMoves": ["DragonDance", "ExtremeSpeed", "FirePunch", "Earthquake"]
 }
+  let dragoniteMoves = ["DragonDance", "ExtremeSpeed", "FirePunch", "Earthquake"]
 
 function random (min, max) {
   return Math.floor(Math.random() * (max - min) ) + min;
 }
+function damage (movePower, A, D, target4xWeakness, target4xResistances, targetWeakness, targetResistances, targetImmunities, moveType) {
 
-function damage (movePower, A, D, STAB, target4xWeakness, targetWeakness, targetResistances, targetImmunitys, moveType) {
-
-  let rand = random(0.85, 1.01)
-  let dmg = ((42 * movePower * A / D) / 50 + 2) * rand
+  let rand = random(85, 101) / 100
+  let dmg = ((42 * movePower * A / D ) / 50 + 2) * rand
   
-  if (STAB == true){
-    dmg = dmg * 1.5
-  }
   if (target4xWeakness.includes(moveType)){
     dmg = dmg * 4
   }
@@ -44,8 +48,32 @@ function damage (movePower, A, D, STAB, target4xWeakness, targetWeakness, target
   else if (targetResistances.includes(moveType)){
     dmg = dmg * 0.5
   }
-  else if (targetImmunitys.includes(moveType)){
+  else if (target4xResistances.includes(moveType)){
+    dmg = dmg * 0.25
+  }
+  else if (targetImmunities.includes(moveType)){
     dmg = dmg * 0
   }
     return dmg
 }
+
+function ShadowBall(){  
+  let chance = random(0, 100)
+  if(chance < 20){
+    dragonite["Spd"] = dragonite["Spd"] * 0.67
+  }
+    return damage(80, gengar["Spa"], dragonite["Spd"], dragonite["4xWeakness"], dragonite["4xResistances"], dragonite["Weakness"], dragonite["Resistances"], dragonite["Immunities"], "Ghost")
+
+}
+function EnergyBall(){
+  let chance = random(0, 100)
+  if(chance < 10){
+    dragonite["Spd"] = dragonite["Spd"] * 0.67
+  }
+  return damage(80, gengar["Spa"], dragonite["Spd"], dragonite["4xWeakness"], dragonite["4xResistances"], dragonite["Weakness"], dragonite["Resistances"], dragonite["Immunities"], "Grass")
+}
+function HiddenPowerIce(){
+  return damage(60, gengar["Spa"], dragonite["Spd"], dragonite["4xWeakness"], dragonite["4xResistances"], dragonite["Weakness"], dragonite["Resistances"], dragonite["Immunities"], "Ice")
+}
+
+console.log(EnergyBall(), gengar["Spa"], dragonite["Spd"])
