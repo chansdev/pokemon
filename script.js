@@ -1,11 +1,5 @@
 let vida = document.querySelector(".health-bar1")
 
-function dano(dmg) {
-  let x = vida.clientWidth
-  x -= dmg
-  vida.style.width = `${x}px`
-}
-
 gengar = {
   "Hp" : 261,
   "Atk" : 166,
