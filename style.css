@@ -1,5 +1,19 @@
 body {
   margin: 0;
+  font-family: "Press Start 2P";
+}
+
+h2 {
+  margin: 0px;
+  padding: 0px;
+}
+
+button {
+  display: block;
+  font-family: "Press Start 2P";
+  font-size: 11px;
+  padding: 10px 15px;
+  text-wrap: nowrap;
 }
 
 img {
@@ -73,10 +87,75 @@ img {
 
 .coisasBG {
   display: grid;
-  grid-template-collums: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   border: solid 3px black;
   border-top: none;
   margin: 0 auto;
   width: 800px;
   height: 240px;
+}
+
+.dialogoBG {
+  display: grid;
+  width: 337px;
+  height: 160px;
+  justify-content: start;
+  padding: 40px 30px;
+  border-right: solid 2px black;
+  background: linear-gradient(to bottom, #A8A8A8, #989898);
+}
+
+.dialogoBG p {
+  font-size: 18px;
+  position: relative;
+}
+
+.dialogoBG p::before {
+  content: "“";
+  position: absolute;
+  top: -10px;
+  left: -25px;
+  font-size: 25px;
+  color: #CCC;
+}
+
+.dialogoBG p::after {
+  content: "”";
+  position: absolute;
+  top: -10px;
+  right: -23px;
+  font-size: 25px;
+  color: #CCC;
+}
+
+.acoesBG {
+  display: grid;
+  width: 360px;
+  height: 200px;
+  padding: 20px;
+  border-left: solid 1px black;
+  align-items: center;
+  background: linear-gradient(to bottom, #D7D7D7, #A5A5A5)
+}
+
+.acoesBG h2 {
+  font-size: 18px;
+  margin-bottom: 0px;
+}
+
+.acoesBG div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 360px;
+  gap: 20px 20px;
+}
+
+.acoesBG button {
+  border-radius: 30px;
+  background: linear-gradient(to bottom, #F90A0A, #AE0505);
+  border-color: #500000;
+}
+
+.acoesBG button:hover {
+    background: linear-gradient(to bottom, #CB0101, #9B0202);
 }
