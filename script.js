@@ -1,7 +1,8 @@
-let vida = document.querySelector(".health-bar1")
+let vida1 = document.querySelector(".health-bar1")
+let vida2 = document.querySelector("#health-bar2")
 
 gengar = {
-  "Hp" : 261,
+  "Hp" : vida2.value,
   "Atk" : 166,
   "Def" : 157,
   "Spa" : 359,
@@ -14,9 +15,11 @@ gengar = {
   "Immunities": ["Ground", "Normal", "Fighting"],
 }
   let gengarMoves = ["ShadowBall", "EnergyBall", "HiddenPowerIce", "Taunt"]
+  
+vida2.clientWidth
 
 dragonite = {
-  "Hp" : 323,
+  "Hp" : vida1.value,
   "Atk" : 403,
   "Def" : 227,
   "Spa" : 212,
@@ -78,16 +81,30 @@ function HiddenPowerIce(){
 }
 
 //dragonite moves
+let extremeSpeed = document.querySelector(".extremeSpeed")
+let earthquake = document.querySelector(".earthquake")
+let firePunch = document.querySelector(".firePunch")
+
+
 function ExtremeSpeed(){
   let dragonitePriority = 1
-  return damage (80, dragonite["Atk"], gengar["Def"], gengar["4xWeakness"], gengar["4xResistances"], gengar["Weakness"], gengar["Resistances"], gengar["Immunities"], "Normal")
+  let dano = Math.round(damage(80, dragonite["Atk"], gengar["Def"], gengar["4xWeakness"], gengar["4xResistances"], gengar["Weakness"], gengar["Resistances"], gengar["Immunities"], "Normal"))
+  let novaVida = vida2.value - dano
+  return vida2.value = novaVida
 }
 function Earthquake(){
   let dragonitePriority = 0
-  return damage (100, dragonite["Atk"], gengar["Def"], gengar["4xWeakness"], gengar["4xResistances"], gengar["Weakness"], gengar["Resistances"], gengar["Immunities"], "Ground")
+  let dano = Math.round(damage(100, dragonite["Atk"], gengar["Def"], gengar["4xWeakness"], gengar["4xResistances"], gengar["Weakness"], gengar["Resistances"], gengar["Immunities"], "Ground"))
+  let novaVida = vida2.value - dano
+  return vida2.value = novaVida
 }
 function FirePunch(){
   let dragonitePriority = 0
-  return damage (75, dragonite["Atk"], gengar["Def"], gengar["4xWeakness"], gengar["4xResistances"], gengar["Weakness"], gengar["Resistances"], gengar["Immunities"], "Fire")
+  let dano = Math.round(damage(75, dragonite["Atk"], gengar["Def"], gengar["4xWeakness"], gengar["4xResistances"], gengar["Weakness"], gengar["Resistances"], gengar["Immunities"], "Fire"))
+  let novaVida = vida2.value - dano
+  return vida2.value = novaVida
 }
-
+  
+extremeSpeed.addEventListener("click", ExtremeSpeed)
+earthquake.addEventListener("click", Earthquake)
+firePunch.addEventListener("click", FirePunch)
