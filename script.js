@@ -1,3 +1,9 @@
+let dragonitePriority = 0
+let gengarPriority = 0
+let Taunted = false
+let TauntStart = 0
+let Turn = 1
+
 let vida1 = document.querySelector("#health-bar1")
 let vida2 = document.querySelector("#health-bar2")
 
@@ -13,8 +19,8 @@ gengar = {
   "Weakness": ["Dark", "Ghost", "Psychic"],
   "Resistances": ["Fairy", "Grass"],
   "Immunities": ["Ground", "Normal", "Fighting"],
+  "Types": ["Poison", "Ghost"]
 }
-  let gengarMoves = ["ShadowBall", "EnergyBall", "HiddenPowerIce", "Taunt"]
   
 vida2.clientWidth
 
@@ -30,9 +36,8 @@ dragonite = {
   "Weakness": ["Dragon", "Fairy", "Rock"],
   "Resistances": ["Bug", "Fighting", "Fire", "Water"],
   "Immunities": ["Ground"],
-  "dragoniteMoves": ["DragonDance", "ExtremeSpeed", "FirePunch", "Earthquake"]
+  "Types": ["Dragon", "Flying"]
 }
-  let dragoniteMoves = ["DragonDance", "ExtremeSpeed", "FirePunch", "Earthquake"]
 
 function random (min, max) {
   return Math.floor(Math.random() * (max - min) ) + min;
@@ -41,7 +46,10 @@ function damage (movePower, A, D, target4xWeakness, target4xResistances, targetW
 
   let rand = random(85, 101) / 100
   let dmg = ((42 * movePower * A / D ) / 50 + 2) * rand
-  
+
+  if(userTypes.includes(moveType)){
+    dmg = dmg * 1.5
+  }
   if (target4xWeakness.includes(moveType)){
     dmg = dmg * 4
   }
@@ -78,6 +86,10 @@ function EnergyBall(){
 }
 function HiddenPowerIce(){
   return damage(60, gengar["Spa"], dragonite["Spd"], dragonite["4xWeakness"], dragonite["4xResistances"], dragonite["Weakness"], dragonite["Resistances"], dragonite["Immunities"], "Ice")
+}
+function Taunt(){
+  let Taunted = true
+  let TauntStart = Turn
 }
 
 //dragonite moves
