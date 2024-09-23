@@ -6,7 +6,6 @@ let Turn = 1
 
 let vida1 = document.querySelector("#health-bar1")
 let vida2 = document.querySelector("#health-bar2")
-let dialogo = document.querySelector(".mensagem")
 
 gengar = {
   "Hp" : vida2.value,
@@ -40,14 +39,14 @@ dragonite = {
   "Types": ["Dragon", "Flying"]
 }
 
-function random (min, max) {
+function random(min, max) {
   return Math.floor(Math.random() * (max - min) ) + min;
 }
-function damage (movePower, A, D, target4xWeakness, target4xResistances, targetWeakness, targetResistances, targetImmunities, moveType) {
+function damage(movePower, A, D, target4xWeakness, target4xResistances, targetWeakness, targetResistances, targetImmunities, moveType, userTypes) {
 
   let rand = random(85, 101) / 100
   let dmg = ((42 * movePower * A / D ) / 50 + 2) * rand
-
+  
   if(userTypes.includes(moveType)){
     dmg = dmg * 1.5
   }
@@ -67,6 +66,23 @@ function damage (movePower, A, D, target4xWeakness, target4xResistances, targetW
     dmg = dmg * 0
   }
     return dmg
+}
+function nextTurn(){
+  let moveselect = random(1, 5)
+  if(moveselect = 1){
+    ShadowBall()
+  }
+  else if(moveselect = 2){
+    EnergyBall()
+  }
+  else if(moveselect = 3){
+    HiddenPowerIce()
+  }
+  else if(moveselect = 4){
+    Taunt()
+  }
+  Turn += 1
+  console.log(moveselect)
 }
 
 //gengarmoves
@@ -94,11 +110,10 @@ function Taunt(){
 }
 
 //dragonite moves
+let dragonDance = document.querySelector(".dragonDance")
 let extremeSpeed = document.querySelector(".extremeSpeed")
 let earthquake = document.querySelector(".earthquake")
 let firePunch = document.querySelector(".firePunch")
-let dragonDance = document.querySelector(".dragonDance")
-
 
 function ExtremeSpeed(){
   let dragonitePriority = 1
@@ -119,13 +134,12 @@ function FirePunch(){
   return vida2.value = novaVida
 }
 function DragonDance(){
-  if(Taunted == false){
+  if(taunted == false){
   dragonite["Atk"] = dragonite["Atx"] + (403 * 0.5)
   dragonite["Spe"] = dragonite["Spe"] + (259 * 0.5)
-  dialogo.innerTEXT = "Seu pokemon não pode usar esse movimento por causa do Taunt!"
   }
   else{
-    return 
+    console.log("Seu pokemon não pode usar esse movimento por causa do Taunt!")
   }
 }
   
@@ -135,4 +149,9 @@ firePunch.addEventListener("click", FirePunch)
 dragonDance.addEventListener("click", DragonDance)
 
 
-// novo
+while(gengar["Hp"] > 0 || dragonite["Hp"] > 0){
+  
+  if(Turn == TauntStart + 3){
+    Taunted = false
+  }
+}
