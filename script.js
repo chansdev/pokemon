@@ -1,5 +1,3 @@
-let dragonitePriority = 0
-let gengarPriority = 0
 let Taunted = false
 let TauntStart = 0
 let Turn = 1
@@ -67,7 +65,25 @@ function damage(movePower, A, D, target4xWeakness, target4xResistances, targetWe
   }
     return dmg
 }
-function nextTurn(){
+
+function movesFirst(yourmove){
+  if (yourmove() == ExtremeSpeed()){
+    ExtremeSpeed()
+    gengarSelect()
+  }
+  else{
+    if(dragonite["Spe"] > gengar["Spe"]){
+      yourmove()
+      gengarSelect
+    }
+    else if(dragonite["Spe"] < gengar["Spe"]){
+      gengarSelect()      
+      yourmove()
+    }
+  }
+}
+
+function gengarSelect(){
   let moveselect = random(1, 5)
   if(moveselect = 1){
     ShadowBall()
@@ -81,8 +97,6 @@ function nextTurn(){
   else if(moveselect = 4){
     Taunt()
   }
-  Turn += 1
-  console.log(moveselect)
 }
 
 //gengarmoves
@@ -116,19 +130,16 @@ let earthquake = document.querySelector(".earthquake")
 let firePunch = document.querySelector(".firePunch")
 
 function ExtremeSpeed(){
-  let dragonitePriority = 1
   let dano = Math.round(damage(80, dragonite["Atk"], gengar["Def"], gengar["4xWeakness"], gengar["4xResistances"], gengar["Weakness"], gengar["Resistances"], gengar["Immunities"], "Normal", dragonite["Types"]))
   let novaVida = vida2.value - dano
   return vida2.value = novaVida
 }
 function Earthquake(){
-  let dragonitePriority = 0
   let dano = Math.round(damage(100, dragonite["Atk"], gengar["Def"], gengar["4xWeakness"], gengar["4xResistances"], gengar["Weakness"], gengar["Resistances"], gengar["Immunities"], "Ground", dragonite["Types"]))
   let novaVida = vida2.value - dano
   return vida2.value = novaVida
 }
 function FirePunch(){
-  let dragonitePriority = 0
   let dano = Math.round(damage(75, dragonite["Atk"], gengar["Def"], gengar["4xWeakness"], gengar["4xResistances"], gengar["Weakness"], gengar["Resistances"], gengar["Immunities"], "Fire", dragonite["Types"]))
   let novaVida = vida2.value - dano
   return vida2.value = novaVida
@@ -154,4 +165,6 @@ while(gengar["Hp"] > 0 || dragonite["Hp"] > 0){
   if(Turn == TauntStart + 3){
     Taunted = false
   }
+  
+    Turn += 1
 }
