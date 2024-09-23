@@ -46,8 +46,7 @@ img {
   height: 278px;
 }
 
-.health-bar1,
-.health-bar2 {
+.health-bar1 {
   position: absolute;
   top: 0;
   left: 0;
@@ -66,9 +65,30 @@ img {
   left: -23px;
 }
 
-.health-bar2,
-.health-barBG2 {
+.health-barBG2,{
   width: 261px;
+}
+
+#health-bar2,
+#health-bar1 {
+  width: 261px;
+  height: 25px;
+  border-radius: 0px;
+}
+
+
+#health-bar1 {
+  width: 323px;
+}
+
+#health-bar2::-webkit-progress-bar,
+#health-bar1::-webkit-progress-bar {
+  background-color: green; 
+}
+
+#health-bar2::-webkit-progress-value,
+#health-bar1::-webkit-progress-value {
+  background-color: rgb(127,255,0);
 }
 
 .health-barBG2 {
