@@ -104,6 +104,15 @@ function FirePunch(){
   let novaVida = vida2.value - dano
   return vida2.value = novaVida
 }
+function DragonDance(){
+  if(taunted == false){
+  dragonite["Atk"] = dragonite["Atx"] + (403 * 0.5)
+  dragonite["Spe"] = dragonite["Spe"] + (259 * 0.5)
+  }
+  else{
+    console.log("Seu pokemon não pode usar esse movimento por causa do Taunt!")
+  }
+}
   
 extremeSpeed.addEventListener("click", ExtremeSpeed)
 earthquake.addEventListener("click", Earthquake)
