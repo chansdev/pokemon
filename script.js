@@ -57,6 +57,7 @@ function damage (movePower, A, D, target4xWeakness, target4xResistances, targetW
     return dmg
 }
 
+//gengarmoves
 function ShadowBall(){  
   let chance = random(0, 100)
   if(chance < 20){
@@ -76,4 +77,17 @@ function HiddenPowerIce(){
   return damage(60, gengar["Spa"], dragonite["Spd"], dragonite["4xWeakness"], dragonite["4xResistances"], dragonite["Weakness"], dragonite["Resistances"], dragonite["Immunities"], "Ice")
 }
 
-console.log(EnergyBall(), gengar["Spa"], dragonite["Spd"])
+//dragonite moves
+function ExtremeSpeed(){
+  let dragonitePriority = 1
+  return damage (80, dragonite["Atk"], gengar["Def"], gengar["4xWeakness"], gengar["4xResistances"], gengar["Weakness"], gengar["Resistances"], gengar["Immunities"], "Normal")
+}
+function Earthquake(){
+  let dragonitePriority = 0
+  return damage (100, dragonite["Atk"], gengar["Def"], gengar["4xWeakness"], gengar["4xResistances"], gengar["Weakness"], gengar["Resistances"], gengar["Immunities"], "Ground")
+}
+function FirePunch(){
+  let dragonitePriority = 0
+  return damage (75, dragonite["Atk"], gengar["Def"], gengar["4xWeakness"], gengar["4xResistances"], gengar["Weakness"], gengar["Resistances"], gengar["Immunities"], "Fire")
+}
+
