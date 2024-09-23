@@ -179,3 +179,16 @@ img {
 .acoesBG button:hover {
     background: linear-gradient(to bottom, #CB0101, #9B0202);
 }
+
+.perdeu {
+  position: absolute;
+  display: none;
+  top: 30px;
+  left: 30px;
+  width: 730px;
+  height: 420px;
+  z-index: 1001;
+  border: solid 3px black;
+  place-items: center;
+  background: linear-gradient(to bottom, #D7D7D7, #A5A5A5)
+}
