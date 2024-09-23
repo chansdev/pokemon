@@ -11,7 +11,7 @@ gengar = {
   "4xResistances" : ["Bug", "Poison"],
   "Weakness": ["Dark", "Ghost", "Psychic"],
   "Resistances": ["Fairy", "Grass"],
-  "Immunities": ["Ground"],
+  "Immunities": ["Ground", "Normal", "Fighting"],
 }
   let gengarMoves = ["ShadowBall", "EnergyBall", "HiddenPowerIce", "Taunt"]
 
