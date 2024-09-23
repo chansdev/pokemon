@@ -1,4 +1,4 @@
-let vida1 = document.querySelector(".health-bar1")
+let vida1 = document.querySelector("#health-bar1")
 let vida2 = document.querySelector("#health-bar2")
 
 gengar = {
@@ -108,3 +108,5 @@ function FirePunch(){
 extremeSpeed.addEventListener("click", ExtremeSpeed)
 earthquake.addEventListener("click", Earthquake)
 firePunch.addEventListener("click", FirePunch)
+
+// novo
