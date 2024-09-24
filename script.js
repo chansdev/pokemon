@@ -2,8 +2,11 @@ let Taunted = false
 let TauntStart = 0
 let Turn = 1
 
+let delay = 3000
+
 let vida1 = document.querySelector("#health-bar1")
 let vida2 = document.querySelector("#health-bar2")
+let dialogo = document.querySelector(".dialogo")
 
 gengar = {
   "Hp" : vida2.value,
@@ -20,8 +23,6 @@ gengar = {
   "Types": ["Poison", "Ghost"]
 }
   
-vida2.clientWidth
-
 dragonite = {
   "Hp" : vida1.value,
   "Atk" : 403,
@@ -66,59 +67,57 @@ function damage(movePower, A, D, target4xWeakness, target4xResistances, targetWe
     return dmg
 }
 
-function movesFirst(yourmove){
-  if (yourmove() == ExtremeSpeed()){
-    ExtremeSpeed()
-    gengarSelect()
-  }
-  else{
-    if(dragonite["Spe"] > gengar["Spe"]){
-      yourmove()
-      gengarSelect
-    }
-    else if(dragonite["Spe"] < gengar["Spe"]){
-      gengarSelect()      
-      yourmove()
-    }
-  }
-}
-
 function gengarSelect(){
   let moveselect = random(1, 5)
-  if(moveselect = 1){
+  if(moveselect == 1){
     ShadowBall()
   }
-  else if(moveselect = 2){
+  else if(moveselect == 2){
     EnergyBall()
   }
-  else if(moveselect = 3){
+  else if(moveselect == 3){
     HiddenPowerIce()
   }
-  else if(moveselect = 4){
+  else if(moveselect == 4){
     Taunt()
   }
 }
 
 //gengarmoves
 function ShadowBall(){  
+  console.log("Gengar usou Shadow Ball!")
+  
   let chance = random(0, 100)
   if(chance < 20){
     dragonite["Spd"] = dragonite["Spd"] * 0.67
-  }
-    return damage(80, gengar["Spa"], dragonite["Spd"], dragonite["4xWeakness"], dragonite["4xResistances"], dragonite["Weakness"], dragonite["Resistances"], dragonite["Immunities"], "Ghost", gengar["Types"])
+    console.log("Gengar diminuiu sua defesa especial!")
+}
+    let dano = Math.round( damage(80, gengar["Spa"], dragonite["Spd"], dragonite["4xWeakness"], dragonite["4xResistances"], dragonite["Weakness"], dragonite["Resistances"], dragonite["Immunities"], "Ghost", gengar["Types"]))
+   let novaVida = vida1.value - dano
+   return vida1.value = novaVida
 
 }
 function EnergyBall(){
+  console.log("Gengar usou Energy Ball!")
   let chance = random(0, 100)
   if(chance < 10){
     dragonite["Spd"] = dragonite["Spd"] * 0.67
+    console.log("Gengar diminuiu sua defesa especial!")
+
   }
-  return damage(80, gengar["Spa"], dragonite["Spd"], dragonite["4xWeakness"], dragonite["4xResistances"], dragonite["Weakness"], dragonite["Resistances"], dragonite["Immunities"], "Grass", gengar["Types"])
+    let dano = Math.round( damage(80, gengar["Spa"], dragonite["Spd"], dragonite["4xWeakness"], dragonite["4xResistances"], dragonite["Weakness"], dragonite["Resistances"], dragonite["Immunities"], "Grass", gengar["Types"]))
+   let novaVida = vida1.value - dano
+   return vida1.value = novaVida
 }
 function HiddenPowerIce(){
-  return damage(60, gengar["Spa"], dragonite["Spd"], dragonite["4xWeakness"], dragonite["4xResistances"], dragonite["Weakness"], dragonite["Resistances"], dragonite["Immunities"], "Ice", gengar["Types"])
+  console.log("Gengar usou Hidden Power Ice!")
+  
+  let dano = Math.round( damage(60, gengar["Spa"], dragonite["Spd"], dragonite["4xWeakness"], dragonite["4xResistances"], dragonite["Weakness"], dragonite["Resistances"], dragonite["Immunities"], "Ice", gengar["Types"]))
+   let novaVida = vida1.value - dano
+   return vida1.value = novaVida
 }
 function Taunt(){
+  console.log("Gengar usou Hidden Power Ice!")
   let Taunted = true
   let TauntStart = Turn
 }
@@ -145,26 +144,50 @@ function FirePunch(){
   return vida2.value = novaVida
 }
 function DragonDance(){
-  if(taunted == false){
-  dragonite["Atk"] = dragonite["Atx"] + (403 * 0.5)
+  if(Taunted == false){
+  dragonite["Atk"] = dragonite["Atk"] + (403 * 0.5)
   dragonite["Spe"] = dragonite["Spe"] + (259 * 0.5)
   }
   else{
     console.log("Seu pokemon não pode usar esse movimento por causa do Taunt!")
   }
 }
+
+function movesFirst(yourmove){
+  if (yourmove == ExtremeSpeed()){
+    ExtremeSpeed()
+    gengarSelect()
+  }
+  else{
+    if(dragonite["Spe"] > gengar["Spe"]){
+      yourmove
+      if(vida2.value > 0){
+        gengarSelect()
+      }
+      else{
+        console.log("Você Ganhou!")
+      }
+    }
+    else if(dragonite["Spe"] < gengar["Spe"]){
+      gengarSelect()
+      if(vida1.value > 0){
+        yourmove
+      }
+      else{
+        console.log("Você Perdeu!")
+      }
+    }
+  }
+}
   
-extremeSpeed.addEventListener("click", ExtremeSpeed)
-earthquake.addEventListener("click", Earthquake)
-firePunch.addEventListener("click", FirePunch)
+extremeSpeed.addEventListener("click", () => {
+  movesFirst(ExtremeSpeed())
+})
+earthquake.addEventListener("click", () => {
+  movesFirst(Earthquake())
+})
+firePunch.addEventListener("click", () => {
+  movesFirst(FirePunch())
+})
 dragonDance.addEventListener("click", DragonDance)
 
-
-while(gengar["Hp"] > 0 || dragonite["Hp"] > 0){
-  
-  if(Turn == TauntStart + 3){
-    Taunted = false
-  }
-  
-    Turn += 1
-}
