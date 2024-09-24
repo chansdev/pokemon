@@ -2,8 +2,6 @@ let Taunted = false
 let TauntStart = 0
 let Turn = 1
 
-let delay = 3000
-
 let vida1 = document.querySelector("#health-bar1")
 let vida2 = document.querySelector("#health-bar2")
 let dialogo = document.querySelector(".dialogo")
