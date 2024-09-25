@@ -46,63 +46,27 @@ img {
   height: 278px;
 }
 
-.health-bar1 {
+#health-bar1,
+#health-bar2 {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: -28px;
   height: 25px;
-  background-color: rgb(127,255,0);
-  z-index: 1000;
-}
-
-.health-bar1,
-.health-barBG1 {
-  width: 323px;
-  left: 0px;
-}
-
-.health-barBG1 {
-  left: -23px;
-}
-
-.health-barBG2,{
-  width: 261px;
-}
-
-#health-bar2,
-#health-bar1 {
-  width: 261px;
-  height: 25px;
-  border-radius: 0px;
-}
-
-
-#health-bar1 {
-  width: 323px;
+  width: 278px;
+  border: solid 3px black;
+  border-radius: 30px;
+  z-index: 999;
 }
 
 #health-bar2::-webkit-progress-bar,
 #health-bar1::-webkit-progress-bar {
+  border-radius: 30px;
   background-color: green; 
 }
 
 #health-bar2::-webkit-progress-value,
 #health-bar1::-webkit-progress-value {
+  border-radius: 30px;
   background-color: rgb(127,255,0);
-}
-
-.health-barBG2 {
-  left: 5px;
-}
-
-.health-barBG1,
-.health-barBG2 {
-  position: absolute;
-  top: -28px;
-  height: 25px;
-  background-color: green;
-  border: solid 3px black;
-  z-index: 999;
 }
 
 .coisasBG {
@@ -132,18 +96,12 @@ img {
 
 .dialogoBG p::before {
   content: "“";
-  position: absolute;
-  top: -10px;
-  left: -25px;
   font-size: 25px;
   color: #CCC;
 }
 
 .dialogoBG p::after {
   content: "”";
-  position: absolute;
-  top: -10px;
-  right: -23px;
   font-size: 25px;
   color: #CCC;
 }
@@ -193,4 +151,4 @@ img {
   background: linear-gradient(to bottom, #D7D7D7, #A5A5A5)
 }
 
-/* novo */
+/* novo2 */
